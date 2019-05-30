@@ -1,4 +1,19 @@
-// - `<TodoForm>` will hold your input field and your`Add Todo` and`Clear Completed` buttons.
+import React from 'react';
 
-// - Your input field should take in user input, and allow a user to press`Enter` or click on the`Submit Button` to add a todo to your list.
-//   - Once a todo is submitted, the Todo List should re - render and show the added todo.
+function TodoForm(props) {
+  return (
+    <form className='form' onSubmit={props.addTask}>
+      <input
+        type='text'
+        name='taskInput'
+        placeholder='task input'
+        value={props.taskInput}
+        onChange={props.changeHandler}
+      />
+      <button>Submit</button>
+      <button>clear completed</button>
+    </form>
+  );
+}
+
+export default TodoForm;
