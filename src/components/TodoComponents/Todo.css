@@ -128,6 +128,11 @@ table {
   border-spacing: 0;
 }
 
+p {
+  margin: 1rem;
+}
 /* end of reset */
 
-
+.item.completed {
+  text-decoration: line-through;
+}

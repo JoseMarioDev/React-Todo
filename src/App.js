@@ -11,7 +11,7 @@ const data = [
   {
     task: 'Bake Cookies',
     id: 1528817084358,
-    completed: true,
+    completed: false,
   },
 ];
 
@@ -23,6 +23,23 @@ class App extends React.Component {
       taskInput: '',
     };
   }
+
+  toggleItem = id => {
+    this.setState(prevState => {
+      return {
+        todos: prevState.todos.map(item => {
+          if (item.id === id) {
+            return {
+              ...item,
+              completed: !item.completed,
+            };
+          } else {
+            return item;
+          }
+        }),
+      };
+    });
+  };
 
   changeHandler = e => {
     e.preventDefault();
@@ -47,14 +64,14 @@ class App extends React.Component {
   clearCompleted = e => {
     e.preventDefault();
     this.setState({
-      todos: this.state.todos.filter(task => !task.complete),
+      todos: this.state.todos.filter(task => !task.completed),
     });
   };
 
   render() {
     return (
       <div>
-        <TodoList todo={this.state.todos} />
+        <TodoList todo={this.state.todos} toggleItem={this.toggleItem} />
         <TodoForm
           taskInput={this.state.taskInput}
           changeHandler={this.changeHandler}
@@ -65,5 +82,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;
